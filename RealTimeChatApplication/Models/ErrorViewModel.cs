@@ -1,5 +1,3 @@
-using System;
-
 namespace RealTimeChatApplication.Models
 {
     public class ErrorViewModel
