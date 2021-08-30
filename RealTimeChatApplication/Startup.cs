@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using RealTimeChatApplication.Data;
+using RealTimeChatApplication.Hubs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +33,8 @@ namespace RealTimeChatApplication
 
             services
                 .AddControllersWithViews();
+
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -60,6 +63,8 @@ namespace RealTimeChatApplication
                         endpoints.MapDefaultControllerRoute();
 
                         endpoints.MapRazorPages();
+
+                        endpoints.MapHub<ChatHub>("/chat");
                     });
         }
     }
