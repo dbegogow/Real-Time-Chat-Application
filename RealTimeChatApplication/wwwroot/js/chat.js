@@ -11,7 +11,7 @@ connection.on("ReceiveMessage", function (user, message) {
     const messageElement = document.createElement("h3");
     messageElement.textContent = encodedMsg;
 
-    document.getElementId("messageList").appendChild(messageElement);
+    document.getElementById("messageList").appendChild(messageElement);
 });
 
 connection.start().catch(function (err) {
