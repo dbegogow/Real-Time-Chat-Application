@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.SignalR;
 using RealTimeChatApplication.Models;
 
@@ -16,11 +17,26 @@ namespace RealTimeChatApplication.Hubs
             this._connections = connections;
         }
 
+        public override Task OnDisconnectedAsync(Exception exception)
+        {
+            if (this._connections.TryGetValue(Context.ConnectionId, out UserConnection userConnection))
+            {
+                this._connections.Remove(Context.ConnectionId);
+
+                this.Clients
+                    .Group(userConnection.Room)
+                    .SendAsync("ReceiveMessage", _botUser, $"{userConnection.User} has left");
+            }
+
+            return base.OnDisconnectedAsync(exception);
+        }
+
         public async Task SendMessage(string message)
         {
             if (this._connections.TryGetValue(Context.ConnectionId, out UserConnection userConnection))
             {
-                await Clients.Group(userConnection.Room)
+                await Clients
+                    .Group(userConnection.Room)
                     .SendAsync("ReceiveMessage", userConnection.User, message);
             }
         }
