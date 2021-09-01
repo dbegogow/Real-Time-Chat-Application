@@ -3,10 +3,11 @@ import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Lobby from './components/Lobby';
+import Chat from './components/Chat';
 
 const App = () => {
     const [connection, setConnection] = useState();
-    const [messages, setMessages] = useState();
+    const [messages, setMessages] = useState([]);
 
     const joinRoom = async (user, room) => {
         try {
@@ -32,7 +33,11 @@ const App = () => {
         <div className="app">
             <h2>MyChat</h2>
             <hr className="line" />
-            <Lobby joinRoom={joinRoom} />
+            {
+                !connection
+                    ? <Lobby joinRoom={joinRoom} />
+                    : <Chat messages={messages} />
+            }
         </div>
     );
 };
