@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeChatApplication", "RealTimeChatApplication\RealTimeChatApplication.csproj", "{995C0F4A-4565-4A31-ADF8-6CA28648923A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeChatApplication", "RealTimeChatApplication\RealTimeChatApplication.csproj", "{D0D7C1A9-FBFF-454E-AD5F-6BAC037D66E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{995C0F4A-4565-4A31-ADF8-6CA28648923A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{995C0F4A-4565-4A31-ADF8-6CA28648923A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{995C0F4A-4565-4A31-ADF8-6CA28648923A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{995C0F4A-4565-4A31-ADF8-6CA28648923A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0D7C1A9-FBFF-454E-AD5F-6BAC037D66E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0D7C1A9-FBFF-454E-AD5F-6BAC037D66E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0D7C1A9-FBFF-454E-AD5F-6BAC037D66E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0D7C1A9-FBFF-454E-AD5F-6BAC037D66E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {31C5CB92-B16E-40E8-8B43-2B89E9EC0306}
+		SolutionGuid = {14E8323B-1C6B-4ABF-BDC2-16BE6E684E3D}
 	EndGlobalSection
 EndGlobal
