@@ -29,6 +29,14 @@ const App = () => {
         }
     };
 
+    const sendMessage = async (message) => {
+        try {
+            await connection.invoke("SendMessage", message);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     return (
         <div className="app">
             <h2>MyChat</h2>
@@ -36,7 +44,7 @@ const App = () => {
             {
                 !connection
                     ? <Lobby joinRoom={joinRoom} />
-                    : <Chat messages={messages} />
+                    : <Chat messages={messages} sendMessage={sendMessage} />
             }
         </div>
     );

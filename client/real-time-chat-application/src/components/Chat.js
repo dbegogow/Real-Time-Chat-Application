@@ -1,6 +1,6 @@
 import MessageContainer from "./MessageContainer";
 
-const Chat = ({ messages }) => {
+const Chat = ({ messages, sendMessage }) => {
     return (
         <div>
             <div className="chat">
