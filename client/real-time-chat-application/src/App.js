@@ -1,7 +1,7 @@
+import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Lobby from './components/Lobby';
-import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 
 const App = () => {
     const joinRoom = async (user, room) => {
