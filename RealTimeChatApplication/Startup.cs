@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using RealTimeChatApplication.Hubs;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,8 +9,7 @@ namespace RealTimeChatApplication
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
-        {
-        }
+            => services.AddSignalR();
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -22,12 +21,7 @@ namespace RealTimeChatApplication
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });
+                endpoints.MapHub<ChatHub>("/chat"));
         }
     }
 }
