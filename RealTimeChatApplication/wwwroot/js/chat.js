@@ -1,30 +1,47 @@
-﻿const connection = new signalR.HubConnectionBuilder().withUrl("/chat").build();
+﻿const connection = new signalR
+    .HubConnectionBuilder()
+    .withUrl("/chat")
+    .build();
+
+document.getElementById("sendButton").disabled = true;
 
 connection.on("ReceiveMessage", function (user, message) {
-    const msg = message
+    var msg = message
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
 
-    const encodedMsg = "[" + user + "]: " + msg;
+    var encodedMsg = user + " says " + msg;
 
-    const messageElement = document.createElement("h3");
-    messageElement.textContent = encodedMsg;
+    var li = document.createElement("li");
 
-    document.getElementById("messageList").appendChild(messageElement);
+    li.textContent = encodedMsg;
+
+    document.getElementById("messagesList").appendChild(li);
 });
 
-connection.start().catch(function (err) {
+connection.start().then(function () {
+    document.getElementById("sendButton").disabled = false;
+}).catch(function (err) {
     return console.error(err.toString());
 });
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
-    const user = document.getElementById("userInput").value;
-    const message = document.getElementById("messageInput").value;
+    var sender = document.getElementById("senderInput").value;
+    var receiver = document.getElementById("receiverInput").value;
+    var message = document.getElementById("messageInput").value;
 
-    connection.invoke("SendMessage", user, message).catch(function (err) {
-        return console.error(err.toString());
-    });
+    if (receiver !== "") {
+        connection.invoke("SendMessageToGroup", sender, receiver, message).catch(function (err) {
+            return console.error(err.toString());
+        });
+    }
+    else {
+        connection.invoke("SendMessage", sender, message).catch(function (err) {
+            return console.error(err.toString());
+        });
+    }
+
 
     event.preventDefault();
 });
