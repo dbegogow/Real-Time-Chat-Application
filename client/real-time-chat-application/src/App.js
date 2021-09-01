@@ -6,6 +6,7 @@ import Lobby from './components/Lobby';
 
 const App = () => {
     const [connection, setConnection] = useState();
+    const [messages, setMessages] = useState();
 
     const joinRoom = async (user, room) => {
         try {
@@ -14,8 +15,9 @@ const App = () => {
                 .configureLogging(LogLevel.Information)
                 .build();
 
-            connection.on("ReceiveMessage", (user, message) =>
-                console.log('message received: ', message));
+            connection.on("ReceiveMessage", (user, message) => {
+                setMessages(messages => [...messages, { user, message }]);
+            });
 
             await connection.start();
             await connection.invoke("JoinRoom", { user, room });
