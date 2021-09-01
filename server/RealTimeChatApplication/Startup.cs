@@ -9,7 +9,21 @@ namespace RealTimeChatApplication
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
-            => services.AddSignalR();
+        {
+            services.AddSignalR();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder
+                        .WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
+        }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -18,10 +32,10 @@ namespace RealTimeChatApplication
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-                endpoints.MapHub<ChatHub>("/chat"));
+            app.UseRouting()
+                .UseCors()
+                .UseEndpoints(endpoints =>
+                    endpoints.MapHub<ChatHub>("/chat"));
         }
     }
 }
