@@ -1,2 +1,2 @@
 # Real-Time-Chat-Application
-ASP.NET Core MVC Chat Application project using SignalR
+Chat Application project build with ASP.NET Core for Backend and React for Frontend
