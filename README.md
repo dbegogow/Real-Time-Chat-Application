@@ -4,10 +4,10 @@
 
 💬 Users can easily chat with each other in different rooms.
 
-## Interface
+## 📷 Interface
 
 #### Home Page
-![Image of Yaktocat](https://github.com/dbegogow/We-Love-Food/blob/main/Images/home.png)
+![Image of Yaktocat](https://github.com/dbegogow/Real-Time-Chat-Application/blob/main/images/home.png)
 
 #### Chat Room Page
-![Image of Yaktocat](https://github.com/dbegogow/We-Love-Food/blob/main/Images/home.png)
+![Image of Yaktocat](https://github.com/dbegogow/Real-Time-Chat-Application/blob/main/images/chat-room.png)
