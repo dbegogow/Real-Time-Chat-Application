@@ -27,6 +27,8 @@ namespace RealTimeChatApplication.Hubs
                 this.Clients
                     .Group(userConnection.Room)
                     .SendAsync("ReceiveMessage", _botUser, $"{userConnection.User} has left");
+
+                this.SendConnectedUsers(userConnection.Room);
             }
 
             return base.OnDisconnectedAsync(exception);
@@ -51,6 +53,8 @@ namespace RealTimeChatApplication.Hubs
             await Clients
                 .Group(userConnection.Room)
                 .SendAsync("ReceiveMessage", this._botUser, $"{userConnection.User} has joined {userConnection.Room}");
+
+            await SendConnectedUsers(userConnection.Room);
         }
 
         public Task SendConnectedUsers(string room)
