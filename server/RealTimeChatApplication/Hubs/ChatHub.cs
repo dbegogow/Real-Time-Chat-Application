@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.SignalR;
@@ -50,6 +51,16 @@ namespace RealTimeChatApplication.Hubs
             await Clients
                 .Group(userConnection.Room)
                 .SendAsync("ReceiveMessage", this._botUser, $"{userConnection.User} has joined {userConnection.Room}");
+        }
+
+        public Task SendConnectedUsers(string room)
+        {
+            var users = this._connections.Values
+                .Where(c => c.Room == room)
+                .Select(c => c.User)
+                .ToList();
+
+            return Clients.Group(room).SendAsync("UsersInRoom", users);
         }
     }
 }
