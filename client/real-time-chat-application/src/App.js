@@ -8,6 +8,7 @@ import Chat from './components/Chat';
 const App = () => {
     const [connection, setConnection] = useState();
     const [messages, setMessages] = useState([]);
+    const [users, setUsers] = useState([]);
 
     const joinRoom = async (user, room) => {
         try {
@@ -16,6 +17,10 @@ const App = () => {
                 .configureLogging(LogLevel.Information)
                 .build();
 
+            connection.on("UsersInRoom", (users) => {
+                setUsers(users);
+            });
+
             connection.on("ReceiveMessage", (user, message) => {
                 setMessages(messages => [...messages, { user, message }]);
             });
@@ -23,6 +28,7 @@ const App = () => {
             connection.onclose(e => {
                 setConnection();
                 setMessages([]);
+                setUsers([]);
             });
 
             await connection.start();
@@ -60,7 +66,8 @@ const App = () => {
                     : <Chat
                         messages={messages}
                         sendMessage={sendMessage}
-                        closeConnection={closeConnection} />
+                        closeConnection={closeConnection}
+                        users={users} />
             }
         </div>
     );
